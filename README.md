@@ -62,6 +62,6 @@ The dataset is attributed to BlastChar's Kaggle page and IBM's original-format C
 
 The full analysis was rerun successfully before publication. Cross-validation results, held-out predictions, model metrics, feature checks and the demo match the supplied project. The notebook contains 12 executed code cells, seven embedded figures and no error outputs. See `docs/TECHNICAL_VALIDATION.md`.
 
-The report cover still needs the actual member names, IDs and submission date. The group must review and sign the separately supplied ethics form, submit it through the course portal, and record or present the prepared 5–7 minute demo. Ethics documents are kept outside this repository. This private repository must be shared with the instructor to satisfy the assignment's public-or-shared requirement.
+The report cover contains the supplied Group 12 names, IDs and submission date of 4 October 2026. The group must review and sign the separately supplied ethics form, submit it through the course portal, and record or present the prepared 5–7 minute demo. Ethics documents are kept outside this repository. This private repository must be shared with the instructor to satisfy the assignment's public-or-shared requirement.
 
 Code revision, analysis execution, drafting and checks used OpenAI Codex assistance, starting from the user-supplied `churn_analysis.py`. Members should understand the submission and describe their own contributions accurately.

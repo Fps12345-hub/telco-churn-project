@@ -1,53 +1,78 @@
-# Five to seven minute live demo
+# Telco churn demo script
 
-This is a prepared live-demo route. It is not a claim that a recording has been made or that a presentation has already been delivered.
+Group 12 — Andrea, Vanesa, Mia and Hasnain. Prepared 4 October 2026.
 
-## 0:00–0:40  State the question
+Allow about 6–7 minutes including scrolling, showing charts and running the command. These speaking parts are suggestions and can be swapped. Read the quoted text; screen actions are directions. Rehearse once to check your pace.
 
-Say: “We selected Option A, telecom customer churn. The goal is to rank customers who look more likely to churn so a retention team can decide who to review. This is a prediction exercise on a static IBM educational sample, so we will also show what the data cannot prove.”
+Before starting, open the executed notebook and a terminal in the project folder with the project's Python environment activated. Keep the model and supporting files in their existing folders. Do not rerun training during the presentation.
 
-Open `churn_analysis.ipynb` and show the title and the printed shape: 7,043 rows and 21 columns.
+## 0:00–1:35 Andrea introduces the problem and data
 
-## 0:40–1:25  Show the data checks
+**Show:** notebook title, dataset shape and data-quality output.
 
-Scroll to the data-quality output. Point out 11 blank `TotalCharges` entries, all at zero tenure, no duplicate customer IDs and no negative tenure or charge values. Say that blanks are converted to missing numeric values and imputed inside the training pipeline. Explain that `customerID` is excluded from predictors and that `Churn` is the target.
+“Hi, we are Group 12: Andrea, Vanesa, Mia and Hasnain. Our project is Option A, predicting customer churn for a telecom provider.
 
-## 1:25–2:10  Explain the features and EDA
+Churn means a customer leaves a service. Our aim is to identify customers who look more likely to leave, so a retention team can decide who to review and contact.
 
-Show the contract and internet-service charts. Say that month-to-month churn is 42.7% in the training data, compared with 11.1% for one-year and 2.9% for two-year contracts. Fiber optic is 42.1%, DSL 18.7% and no internet service 7.2%. Add: “These are associations, not proof that changing a contract or service causes churn.”
+We used the IBM Telco Customer Churn sample, available through Kaggle. It contains 7,043 customers and 21 columns. The target is Churn, recorded as Yes or No. About 26.5 percent of customers are labelled as churners.
 
-Point to `ServiceCount` and `TenureBand`. Explain that they count six optional services and group tenure into four relationship stages. The original fields remain available.
+We first checked missing values, duplicates and data types. We found 11 blank TotalCharges values, all belonging to customers with zero tenure. We converted this column to numbers and filled missing values using medians learned only from training data. We found no duplicate customer IDs.
 
-## 2:10–3:15  Explain modelling
+We excluded customerID from the predictors because it identifies the record. We also kept the Churn target separate from the inputs.”
 
-Show the model cell and say: “We use an 80/20 stratified split: 5,634 training rows and 1,409 held-out test rows. Preprocessing is inside the pipeline, and five-fold training cross-validation compares a majority baseline, logistic regression and random forest. We select on mean training F1 before looking at the test results.”
+## 1:35–3:05 Vanesa explains patterns and training
 
-Read the selection output: random forest CV F1 0.6316, logistic regression 0.6280 and dummy 0.0000. Mention that the forest uses balanced class weights, depth 8, 200 trees and minimum leaf size 5.
+**Show:** contract chart, engineered-feature example and training comparison.
 
-## 3:15–4:15  Show the test metrics
+“The contract chart shows one of the clearest patterns. In our training data, month-to-month customers had a churn rate of 42.7 percent. This was 11.1 percent for one-year contracts and 2.9 percent for two-year contracts. This is an association; it does not prove that changing someone's contract would stop them leaving.
 
-Show `results/test_metrics.csv` or the notebook table. Read the selected forest metrics: accuracy 0.763, precision 0.537, recall 0.783, F1 0.637 and ROC-AUC 0.843. Compare logistic regression briefly: its recall is slightly higher at 0.789, but its F1 and accuracy are lower. The dummy's 0.735 accuracy and zero recall explain why accuracy alone is misleading.
+We created two features. ServiceCount counts six optional services that a customer uses. TenureBand groups customers into four stages based on how long they have stayed. We also retained the original information.
 
-## 4:15–5:00  Explain the confusion matrix
+We split the data into 80 percent training and 20 percent testing. That gives 5,634 training customers and 1,409 test customers, with similar churn proportions in both groups.
 
-Show `figures/07_model_evaluation.png`. Say: “At threshold 0.50, the forest has 782 true negatives, 253 false positives, 81 false negatives and 293 true positives.” A false negative is a churner we missed. A false positive is a customer we contacted or reviewed unnecessarily. The company must decide what those errors cost.
+We compared logistic regression and random forest, plus a dummy model that always predicts the majority class. Missing-value handling, encoding and scaling are inside the training pipeline.
 
-## 5:00–5:45  Run the saved model
+We used five-fold cross-validation on the training data to compare settings. We selected the model using F1 before evaluating it on the test set. Random forest was selected, with a validation F1 of about 0.632, slightly above logistic regression at 0.628.”
 
-In a terminal in the project folder, run:
+## 3:05–4:40 Mia explains the results
+
+**Show:** test metrics and confusion matrix.
+
+“On the held-out test set, random forest achieved 76.3 percent accuracy, 53.7 percent precision, 78.3 percent recall and an F1 score of 0.637.
+
+Accuracy tells us how many predictions were correct overall. Precision means that about 54 percent of customers flagged as churners actually churned. Recall means we identified about 78 percent of all actual churners. F1 balances precision and recall.
+
+Accuracy alone would be misleading here. The dummy model achieved about 73.5 percent accuracy by predicting that nobody would churn, but it identified zero churners. Logistic regression had slightly higher recall than our forest, but lower F1 and accuracy.
+
+The confusion matrix shows what the errors mean. Our forest correctly identified 293 churners and correctly classified 782 customers who stayed. It missed 81 churners and incorrectly flagged 253 customers who stayed.
+
+Those errors have different business costs. Missing a churner could mean losing a chance to help them. Flagging someone who stays could mean an unnecessary call or offer. The business needs to consider both before using the model.”
+
+## 4:40–6:30 Hasnain runs the model and concludes
+
+**Run in the project terminal:**
 
 ```bash
 python demo_predict.py --input data/demo_customers.csv
 ```
 
-The expected probabilities are about 0.038, 0.859 and 0.166, with predictions No, Yes and No. Say that the second demo prediction is a false positive because its recorded test label is No. This makes the error concept concrete. Explain that the model is loaded from `models/best_model.joblib`; it is not retrained by the demo.
+**Show:** three output rows. Expected scores are approximately 0.0383, 0.8588 and 0.1660; predictions are No, Yes and No.
 
-## 5:45–6:30  Business recommendation and limits
+“This command loads our saved model and predicts for three held-out customers. It does not retrain the model. The saved pipeline handles the original input columns and creates the required features automatically.
 
-Say: “I would use the score to rank a limited reviewed outreach list, rather than automatically giving everyone a discount. The threshold or list size should be chosen with campaign cost and capacity, then tested in a controlled pilot.”
+Using a threshold of 0.5, the first and third customers are predicted not to churn, while the second is predicted to churn. The second customer's actual recorded outcome is No, so this example is a false positive. It shows why a high model score is not a certainty. These scores also need calibration before being treated as reliable individual probabilities.
 
-Finish with: “Contract and tenure are strongly associated with churn in this sample, but the model does not prove causes. The file has no reliable prediction date, customer profit or intervention outcome. Before deployment we need newer time-based validation, calibration, group impact checks and a retention experiment.”
+Our recommendation is to use the model to rank a manageable list for a retention team to review. The company could investigate service problems or contact customers for support. Discounts should depend on costs, customer value and evidence that the offer helps.
 
-## If asked about fairness or ethics
+There are limits. This is a static educational sample, and it does not contain reliable prediction dates, customer profit or responses to offers. Our results do not prove causes or show that the model will perform equally well for future customers.
 
-The held-out audit reports recall of 75.6% for females and 81.2% for males. For `SeniorCitizen` 0 and 1 it is 74.6% and 88.8%, with a smaller senior group of 222 test rows. Say these are descriptive checks, not a fairness certificate. Explain that the official ethics form still needs the actual members to complete and sign it.
+Before deployment, we would test on newer, time-based data, check calibration and errors across customer groups, and run a controlled retention trial. Our project demonstrates a working prediction workflow and explains the further evidence a business would need.”
+
+## Short answers for questions
+
+- **Why random forest?** It had the highest mean training cross-validation F1. The choice was made before inspecting test results.
+- **What about fairness?** We compared held-out errors across gender and senior-citizen groups. Differences require investigation; these checks do not certify fairness.
+- **Did the new features help?** Their measured improvement was small: logistic regression CV F1 changed from about 0.6275 to 0.6280. We do not claim a major gain.
+- **Did you use AI?** Yes. OpenAI Codex helped organise files, create and debug code, run and check analyses, and draft and edit documents. This assistance is disclosed in the declaration and project documentation.
+
+This is a prepared script. The group still needs to record or deliver the demonstration.
