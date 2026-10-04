@@ -1,0 +1,390 @@
+{
+  "quality": {
+    "source_file": "WA_Fn-UseC_-Telco-Customer-Churn.csv",
+    "source_sha256": "88be4b93fbe0cc83421af1c503794c97c342eca914c1576db7c276e61d61358a",
+    "local_inspection_date": "2026-10-03",
+    "rows": 7043,
+    "columns": 21,
+    "unique_customer_ids": 7043,
+    "duplicate_rows": 0,
+    "duplicate_ids": 0,
+    "blank_TotalCharges": 11,
+    "missing_TotalCharges_after_numeric_conversion": 11,
+    "blank_TotalCharges_with_zero_tenure": 11,
+    "other_missing_cells": 0,
+    "negative_tenure_or_charges": 0,
+    "churn_count": 1869,
+    "nonchurn_count": 5174,
+    "churn_rate": 0.2653698707936959
+  },
+  "split": {
+    "random_state": 42,
+    "train_rows": 5634,
+    "test_rows": 1409,
+    "train_churners": 1495,
+    "test_churners": 374,
+    "train_churn_rate": 0.2653532126375577,
+    "test_churn_rate": 0.2654364797728886
+  },
+  "primary_selection_metric": "mean training 5-fold stratified CV F1",
+  "classification_threshold": 0.5,
+  "chosen_model": "Random forest",
+  "best_parameters": {
+    "Dummy": {},
+    "Logistic regression": {
+      "model__C": 10.0,
+      "model__class_weight": "balanced"
+    },
+    "Random forest": {
+      "model__class_weight": "balanced",
+      "model__max_depth": 8
+    }
+  },
+  "cv_metrics": [
+    {
+      "model": "Dummy",
+      "cv_accuracy": 0.7346467539058252,
+      "cv_accuracy_sd": 9.424729039042568e-05,
+      "cv_precision": 0.0,
+      "cv_precision_sd": 0.0,
+      "cv_recall": 0.0,
+      "cv_recall_sd": 0.0,
+      "cv_f1": 0.0,
+      "cv_f1_sd": 0.0,
+      "cv_roc_auc": 0.5,
+      "cv_roc_auc_sd": 0.0
+    },
+    {
+      "model": "Logistic regression",
+      "cv_accuracy": 0.7497367222431486,
+      "cv_accuracy_sd": 0.012492941695239117,
+      "cv_precision": 0.5186140482457382,
+      "cv_precision_sd": 0.015886893937906186,
+      "cv_recall": 0.7966555183946489,
+      "cv_recall_sd": 0.03452438234264597,
+      "cv_f1": 0.628040315120953,
+      "cv_f1_sd": 0.01940776488673064,
+      "cv_roc_auc": 0.8462814047123608,
+      "cv_roc_auc_sd": 0.011646123003220018
+    },
+    {
+      "model": "Random forest",
+      "cv_accuracy": 0.7634022641414278,
+      "cv_accuracy_sd": 0.01069833760176517,
+      "cv_precision": 0.5383317860061094,
+      "cv_precision_sd": 0.014616221996746335,
+      "cv_recall": 0.7645484949832776,
+      "cv_recall_sd": 0.030696438543367965,
+      "cv_f1": 0.6315550769223532,
+      "cv_f1_sd": 0.01691078252442852,
+      "cv_roc_auc": 0.8473268592551513,
+      "cv_roc_auc_sd": 0.009525978514165956
+    }
+  ],
+  "test_metrics": [
+    {
+      "model": "Dummy",
+      "accuracy": 0.7345635202271115,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5
+    },
+    {
+      "model": "Logistic regression",
+      "accuracy": 0.7338537970191625,
+      "precision": 0.49915397631133673,
+      "recall": 0.7887700534759359,
+      "f1": 0.6113989637305699,
+      "roc_auc": 0.8410008008473482
+    },
+    {
+      "model": "Random forest",
+      "accuracy": 0.7629524485450674,
+      "precision": 0.5366300366300366,
+      "recall": 0.7834224598930482,
+      "f1": 0.6369565217391304,
+      "roc_auc": 0.8426993722390143
+    }
+  ],
+  "confusion_matrices": {
+    "Dummy": [
+      [
+        1035,
+        0
+      ],
+      [
+        374,
+        0
+      ]
+    ],
+    "Logistic regression": [
+      [
+        739,
+        296
+      ],
+      [
+        79,
+        295
+      ]
+    ],
+    "Random forest": [
+      [
+        782,
+        253
+      ],
+      [
+        81,
+        293
+      ]
+    ]
+  },
+  "eda_train_only": {
+    "Contract": [
+      {
+        "Contract": "Month-to-month",
+        "customers": 3102,
+        "churners": 1326,
+        "churn_rate": 0.4274661508704062
+      },
+      {
+        "Contract": "One year",
+        "customers": 1173,
+        "churners": 130,
+        "churn_rate": 0.11082693947144075
+      },
+      {
+        "Contract": "Two year",
+        "customers": 1359,
+        "churners": 39,
+        "churn_rate": 0.02869757174392936
+      }
+    ],
+    "InternetService": [
+      {
+        "InternetService": "Fiber optic",
+        "customers": 2483,
+        "churners": 1045,
+        "churn_rate": 0.4208618606524366
+      },
+      {
+        "InternetService": "DSL",
+        "customers": 1937,
+        "churners": 362,
+        "churn_rate": 0.1868869385647909
+      },
+      {
+        "InternetService": "No",
+        "customers": 1214,
+        "churners": 88,
+        "churn_rate": 0.07248764415156507
+      }
+    ],
+    "PaymentMethod": [
+      {
+        "PaymentMethod": "Electronic check",
+        "customers": 1891,
+        "churners": 865,
+        "churn_rate": 0.4574299312533051
+      },
+      {
+        "PaymentMethod": "Mailed check",
+        "customers": 1286,
+        "churners": 248,
+        "churn_rate": 0.19284603421461896
+      },
+      {
+        "PaymentMethod": "Bank transfer (automatic)",
+        "customers": 1244,
+        "churners": 201,
+        "churn_rate": 0.16157556270096463
+      },
+      {
+        "PaymentMethod": "Credit card (automatic)",
+        "customers": 1213,
+        "churners": 181,
+        "churn_rate": 0.14921681780708987
+      }
+    ],
+    "by_churn": [
+      {
+        "Churn label": "No",
+        "customers": 4139,
+        "median_tenure": 38.0,
+        "median_monthly_charges": 64.4
+      },
+      {
+        "Churn label": "Yes",
+        "customers": 1495,
+        "median_tenure": 10.0,
+        "median_monthly_charges": 79.95
+      }
+    ],
+    "numeric_summary": {
+      "SeniorCitizen": {
+        "count": 5634.0,
+        "mean": 0.16329428470003549,
+        "std": 0.3696667640383378,
+        "min": 0.0,
+        "25%": 0.0,
+        "50%": 0.0,
+        "75%": 0.0,
+        "max": 1.0
+      },
+      "tenure": {
+        "count": 5634.0,
+        "mean": 32.48509052183174,
+        "std": 24.56874351182127,
+        "min": 0.0,
+        "25%": 9.0,
+        "50%": 29.0,
+        "75%": 55.0,
+        "max": 72.0
+      },
+      "MonthlyCharges": {
+        "count": 5634.0,
+        "mean": 64.92996095136671,
+        "std": 30.138105357938493,
+        "min": 18.4,
+        "25%": 35.6625,
+        "50%": 70.5,
+        "75%": 90.0,
+        "max": 118.75
+      },
+      "TotalCharges": {
+        "count": 5626.0,
+        "mean": 2302.6042659082827,
+        "std": 2279.1731756466274,
+        "min": 18.85,
+        "25%": 407.275,
+        "50%": 1398.125,
+        "75%": 3838.6125,
+        "max": 8684.8
+      }
+    },
+    "training_missing_TotalCharges": 8,
+    "iqr_flags": {
+      "tenure": 0,
+      "MonthlyCharges": 0,
+      "TotalCharges": 0
+    }
+  },
+  "feature_ablation": [
+    {
+      "features": "Base features",
+      "cv_accuracy": 0.7481378279939669,
+      "cv_precision": 0.5164444879322937,
+      "cv_recall": 0.7999999999999999,
+      "cv_f1": 0.62753540925557,
+      "cv_roc_auc": 0.846209682267312
+    },
+    {
+      "features": "Base + tenure band + service count",
+      "cv_accuracy": 0.7497367222431486,
+      "cv_precision": 0.5186140482457382,
+      "cv_recall": 0.7966555183946489,
+      "cv_f1": 0.628040315120953,
+      "cv_roc_auc": 0.8462814047123608
+    }
+  ],
+  "fairness_test_posthoc": [
+    {
+      "attribute": "gender",
+      "group": "Female",
+      "customers": 687,
+      "actual_churners": 193,
+      "actual_nonchurners": 494,
+      "base_churn_rate": 0.28093158660844253,
+      "flag_rate": 0.38427947598253276,
+      "recall": 0.7564766839378239,
+      "false_positive_rate": 0.2388663967611336,
+      "precision": 0.553030303030303,
+      "tn": 376,
+      "fp": 118,
+      "fn": 47,
+      "tp": 146
+    },
+    {
+      "attribute": "gender",
+      "group": "Male",
+      "customers": 722,
+      "actual_churners": 181,
+      "actual_nonchurners": 541,
+      "base_churn_rate": 0.25069252077562326,
+      "flag_rate": 0.39058171745152354,
+      "recall": 0.8121546961325967,
+      "false_positive_rate": 0.24953789279112754,
+      "precision": 0.5212765957446809,
+      "tn": 406,
+      "fp": 135,
+      "fn": 34,
+      "tp": 147
+    },
+    {
+      "attribute": "SeniorCitizen",
+      "group": "0",
+      "customers": 1187,
+      "actual_churners": 276,
+      "actual_nonchurners": 911,
+      "base_churn_rate": 0.2325189553496209,
+      "flag_rate": 0.34119629317607414,
+      "recall": 0.7463768115942029,
+      "false_positive_rate": 0.21844127332601537,
+      "precision": 0.508641975308642,
+      "tn": 712,
+      "fp": 199,
+      "fn": 70,
+      "tp": 206
+    },
+    {
+      "attribute": "SeniorCitizen",
+      "group": "1",
+      "customers": 222,
+      "actual_churners": 98,
+      "actual_nonchurners": 124,
+      "base_churn_rate": 0.44144144144144143,
+      "flag_rate": 0.6351351351351351,
+      "recall": 0.8877551020408163,
+      "false_positive_rate": 0.43548387096774194,
+      "precision": 0.6170212765957447,
+      "tn": 70,
+      "fp": 54,
+      "fn": 11,
+      "tp": 87
+    }
+  ],
+  "demo_cases": [
+    {
+      "customerID": "4376-KFVRS",
+      "actual_churn": 0,
+      "churn_probability": 0.03830241906864972,
+      "predicted_churn": 0
+    },
+    {
+      "customerID": "2754-SDJRD",
+      "actual_churn": 0,
+      "churn_probability": 0.8587901440787777,
+      "predicted_churn": 1
+    },
+    {
+      "customerID": "9917-KWRBE",
+      "actual_churn": 0,
+      "churn_probability": 0.16600152159875875,
+      "predicted_churn": 0
+    }
+  ],
+  "reload_probabilities_identical": true,
+  "python": "3.12.14",
+  "package_versions": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.7.2",
+    "scipy": "1.16.3",
+    "joblib": "1.5.2",
+    "matplotlib": "3.10.8",
+    "seaborn": "0.13.2",
+    "nbformat": "5.10.4",
+    "nbclient": "0.10.4",
+    "ipykernel": "6.31.0"
+  }
+}

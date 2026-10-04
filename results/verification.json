@@ -1,0 +1,31 @@
+{
+  "source_hash_verified": true,
+  "split_membership_verified": true,
+  "all_1409_saved_test_probabilities_verified": true,
+  "independent_confusion_matrix": [
+    [
+      782,
+      253
+    ],
+    [
+      81,
+      293
+    ]
+  ],
+  "independent_metrics": {
+    "accuracy": 0.7629524485450674,
+    "precision": 0.5366300366300366,
+    "recall": 0.7834224598930482,
+    "f1": 0.6369565217391304,
+    "roc_auc": 0.8426993722390143
+  },
+  "target_and_id_excluded": true,
+  "imputer_matches_training_medians": true,
+  "missing_numeric_and_unseen_category_smoke_check": true,
+  "missing_required_column_rejected": true,
+  "executed_notebook_code_cells": 12,
+  "embedded_notebook_figures": 7,
+  "notebook_errors": 0,
+  "full_training_rerun_matches_saved_results": true,
+  "publication_verification_date": "2026-10-04"
+}

@@ -1,0 +1,2 @@
+# Preserve the supplied dataset bytes and their documented SHA-256.
+data/WA_Fn-UseC_-Telco-Customer-Churn.csv -text whitespace=cr-at-eol

@@ -1,0 +1,11 @@
+# Tested with Python 3.12.14. Use Python 3.12 for the closest reproduction.
+numpy==2.3.5
+pandas==2.2.3
+scikit-learn==1.7.2
+scipy==1.16.3
+joblib==1.5.2
+matplotlib==3.10.8
+seaborn==0.13.2
+nbformat==5.10.4
+nbclient==0.10.4
+ipykernel==6.31.0
